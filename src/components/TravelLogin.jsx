@@ -1,21 +1,30 @@
 import React from "react";
 import { Plane, Luggage, Sun } from "lucide-react";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
+
 import { Login } from "../apis/login";
 export default function TravelLogin() {
+  const [cookies, setCookie] = useCookies(["access_token"]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Login attempt:", { email, password });
-    // Here you would typically send these credentials to your server
-    Login(email, password)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
+    const result = await Login(email, password);
+    if (result.status === 200) {
+      const success = result.data;
+      let expires = new Date();
+      expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+      setCookie("access_token", success.token, {
+        path: "/",
+        expires: expires,
+        maxAge: 7 * 24 * 60 * 60,
+        secure: true,
+        sameSite: "strict",
       });
+    }
   };
 
   return (
@@ -80,6 +89,17 @@ export default function TravelLogin() {
               Sign In
             </button>
           </form>
+          <div className="text-center">
+            <p className="text-sm">
+              Don't have an account?
+              <a
+                href="register"
+                className="text-sm text-blue-600 hover:underline pl-2"
+              >
+                Sign up
+              </a>
+            </p>
+          </div>
           <div className="text-center">
             <a href="#" className="text-sm text-blue-600 hover:underline">
               Forgot password?
