@@ -6,12 +6,12 @@ import { useCookies } from "react-cookie";
 import { Login } from "../apis/login";
 export default function TravelLogin() {
   const [cookies, setCookie] = useCookies(["access_token"]);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
-    const result = await Login(email, password);
+    console.log("Login attempt:", { username, password });
+    const result = await Login(username, password);
     if (result.status === 200) {
       const success = result.data;
       let expires = new Date();
@@ -51,19 +51,19 @@ export default function TravelLogin() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email
+                Username
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
+                type="text"
+                id="username"
+                name="username"
                 required
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="m@example.com"
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your Username"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>

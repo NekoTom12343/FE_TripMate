@@ -1,9 +1,9 @@
 import apis from ".";
 
-export const Login = async (Email, Password) => {
+export const Login = async (Username, Password) => {
   try {
     const response = await apis.post("/login", {
-      email: Email,
+      username: Username,
       password: Password,
     });
     return response.data;
