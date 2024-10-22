@@ -49,7 +49,7 @@ export default function ResetPasswordBlock1({ setStep }) {
         </form>
         <div className="text-center">
           <a
-            href="#"
+            href="login"
             className="text-sm text-blue-600 hover:underline flex items-center justify-center"
           >
             <ArrowLeft size={16} className="mr-1" />

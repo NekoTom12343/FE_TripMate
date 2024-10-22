@@ -6,7 +6,7 @@ import { Login } from "../apis/login";
 
 export default function LoginBlock() {
   const [cookies, setCookie] = useCookies(["access_token"]);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,16 +46,16 @@ export default function LoginBlock() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
+              type="text"
+              id="username"
+              name="username"
               required
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="m@example.com"
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your username"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div>
@@ -93,7 +93,10 @@ export default function LoginBlock() {
           </p>
         </div>
         <div className="text-center">
-          <a href="#" className="text-sm text-blue-600 hover:underline">
+          <a
+            href="reset-password"
+            className="text-sm text-blue-600 hover:underline"
+          >
             Forgot password?
           </a>
         </div>
