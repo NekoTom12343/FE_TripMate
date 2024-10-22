@@ -7,9 +7,7 @@ export default function AuthGuard({ Component, ...rest }) {
   const [loading, setLoading] = useState(true); // To handle loading or validation
 
   useEffect(() => {
-    const accessToken = cookies.access_token;
-
-    if (!accessToken) {
+    if (!cookies.access_token) {
       // If access token is not available, redirect or set a default token for demonstration
       setCookies(
         "access_token",
@@ -28,7 +26,7 @@ export default function AuthGuard({ Component, ...rest }) {
     expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000);
 
     // Validate the access_token and set user_info if valid
-    if (accessToken) {
+    if (cookies.access_token) {
       setCookies("user_info", jwtDecode(cookies.access_token), {
         path: "/",
         expires: expires,
@@ -38,7 +36,7 @@ export default function AuthGuard({ Component, ...rest }) {
     }
 
     setLoading(false); // End loading state after handling side effects
-  }, [cookies]);
+  }, [cookies.access_token]);
 
   if (loading) {
     return <div>Loading...</div>; // Render a loading state while waiting for side effects to complete
