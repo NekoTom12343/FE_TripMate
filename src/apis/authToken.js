@@ -2,7 +2,7 @@ import apis from ".";
 
 export async function validateAuthToken(authToken) {
   try {
-    const result = await apis.post("/auth/token", null, {
+    const result = await apis.post("/auth/introspect", null, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
