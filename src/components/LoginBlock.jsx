@@ -3,17 +3,20 @@ import { Plane, Luggage, Sun } from "lucide-react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { Login } from "../apis/login";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginBlock() {
+  const navigate = useNavigate()
+
   const [cookies, setCookie] = useCookies(["access_token"]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
-    const result = await Login(email, password);
-    if (result.status === 200) {
-      const success = result.data;
+    console.log("Login attempt:", { username, password });
+    const result = await Login(username, password);
+    if (result.code === 200) {
+      const success = result.result;
       let expires = new Date();
       expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000);
 
@@ -24,6 +27,7 @@ export default function LoginBlock() {
         secure: true,
         sameSite: "strict",
       });
+      navigate("/home")
     }
   };
   return (
