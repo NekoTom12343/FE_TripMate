@@ -6,9 +6,7 @@ export default function AuthGuard({ Component, role, ...rest }) {
   const [loading, setLoading] = useState(true); // To handle loading or validation
 
   useEffect(() => {
-    const accessToken = cookies.access_token;
-
-    if (!accessToken) {
+    if (!cookies.access_token) {
       // If access token is not available, redirect or set a default token for demonstration
       setCookies(
         "access_token",
@@ -44,7 +42,7 @@ export default function AuthGuard({ Component, role, ...rest }) {
     }
 
     setLoading(false); // End loading state after handling side effects
-  }, [cookies]);
+  }, [cookies.access_token]);
   if ((role === cookies.user_info.role[0].name) === "user") {
     console.log("User is logged in");
   }
