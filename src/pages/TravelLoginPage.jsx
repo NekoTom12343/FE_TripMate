@@ -1,5 +1,6 @@
 import LoginBlock from "../components/LoginBlock";
 import Logo from "../assets/logo.svg";
+import bg from "../assets/image1.png";
 
 export default function TravelLogin() {
   return (
@@ -19,7 +20,7 @@ export default function TravelLogin() {
           />
         </div>
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+          src={bg}
           alt="Beach scene"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
@@ -28,3 +29,4 @@ export default function TravelLogin() {
     </div>
   );
 }
+// https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80
