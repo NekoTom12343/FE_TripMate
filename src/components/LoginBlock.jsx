@@ -1,17 +1,36 @@
 import React from "react";
-import { Plane, Luggage, Sun } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { Login } from "../apis/login";
+import GoogleIcon from "../assets/google.svg";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import { FormControl, FormControlLabel } from "@mui/material";
 
 export default function LoginBlock() {
   const [cookies, setCookie] = useCookies(["access_token"]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = (field) => {
+    if (field === "password") {
+      setShowPassword(!showPassword);
+    } else {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
-    const result = await Login(email, password);
+    console.log("Login attempt:", { username, password });
+    const result = await Login(username, password);
     if (result.status === 200) {
       const success = result.data;
       let expires = new Date();
@@ -27,79 +46,140 @@ export default function LoginBlock() {
     }
   };
   return (
-    <div className="w-[350px] bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-      <div className="p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-center">
-          Welcome Back, Traveler!
-        </h2>
-        <p className="text-center text-gray-600">
-          Sign in to plan your next adventure
-        </p>
-        <div className="flex justify-center space-x-4 text-blue-600">
-          <Plane size={24} />
-          <Luggage size={24} />
-          <Sun size={24} />
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              required
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Sign In
-          </button>
-        </form>
+    <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <p className="text-sm">
-            Don't have an account?
-            <a
-              href="register"
-              className="text-sm text-blue-600 hover:underline pl-2"
-            >
-              Sign up
-            </a>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            Welcome Back, My Mate
+          </h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Enter details to create your Tripmate account
           </p>
         </div>
-        <div className="text-center">
-          <a
-            href="reset-password"
-            className="text-sm text-blue-600 hover:underline"
+        <form className="mt-8 " onSubmit={handleSubmit}>
+          <Button
+            variant="outlined"
+            size="large"
+            sx={{
+              height: "55px",
+              borderRadius: "45px",
+              borderColor: "#5B5B5B",
+              color: "#5B5B5B",
+              "&:hover": {
+                backgroundColor: "#F5F5F5",
+                borderColor: "#7A7A7A",
+                color: "#7A7A7A",
+              },
+            }}
+            startIcon={
+              <img src={GoogleIcon} alt="Google" className="w-6 h-6" />
+            }
+            fullWidth
           >
-            Forgot password?
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                fontFamily: "Urbanist",
+                textTransform: "none",
+              }}
+            >
+              Continue with Google
+            </Typography>
+          </Button>
+          <div className="flex items-center justify-center mt-[40px]">
+            <div className="border-t border-gray-300 flex-grow mr-3" />
+            <span className="text-sm text-gray-500">or</span>
+            <div className="border-t border-gray-300 flex-grow ml-3" />
+          </div>
+          <div className="space-y-6 mb-[60px]">
+            <TextField
+              label="Username"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              slotProps={{
+                input: { sx: { paddingBottom: "10px", fontSize: "1.5rem" } },
+              }}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+              label="Password"
+              variant="standard"
+              type={showPassword ? "text" : "password"}
+              fullWidth
+              margin="normal"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => togglePasswordVisibility("password")}
+                        edge="end"
+                      >
+                        {showPassword ? <EyeOff /> : <Eye />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                  sx: {
+                    paddingBottom: "10px",
+                    fontSize: "1.5rem",
+                  },
+                },
+              }}
+            />
+            <div className="flex justify-between">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    name="Remember me"
+                  />
+                }
+                label="Remember me"
+                sx={{
+                  color: "#5D5D5D",
+                }}
+              />
+              <a
+                href="reset-password"
+                className="flex items-center justify-center font-medium text-blue-600 hover:text-blue-500 "
+              >
+                Forget password
+              </a>
+            </div>
+          </div>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "#4169E1",
+              "&:hover": { backgroundColor: "#2D84F7 " },
+              height: "55px",
+              borderRadius: "45px",
+              fontWeight: "bold",
+              fontFamily: "Urbanist",
+              textTransform: "none",
+              fontSize: "18px",
+            }}
+            fullWidth
+          >
+            Sign In
+          </Button>
+        </form>
+        <p className="mt-2 text-center text-md text-gray-600 flex items-center justify-center gap-[100px]">
+          Don't have an account yet?
+          <a
+            href="register"
+            className="font-medium text-blue-600 hover:text-blue-500"
+          >
+            Create account
           </a>
-        </div>
+        </p>
       </div>
     </div>
   );
