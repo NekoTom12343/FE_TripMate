@@ -10,9 +10,11 @@ import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
+import { useNavigate } from "react-router-dom";
 import { FormControl, FormControlLabel } from "@mui/material";
 
 export default function LoginBlock() {
+  const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(["access_token"]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -48,12 +50,12 @@ export default function LoginBlock() {
   return (
     <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
       <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+        <div className="text-start">
+          <h2 className="mt-6 text-4xl font-extrabold text-gray-900">
             Welcome Back, My Mate
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Enter details to create your Tripmate account
+          <p className="mt-2 text-xl text-gray-600">
+            Continue with Google or Enter Login Details
           </p>
         </div>
         <form className="mt-8 " onSubmit={handleSubmit}>
@@ -145,7 +147,8 @@ export default function LoginBlock() {
                 }}
               />
               <a
-                href="reset-password"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/reset-password")}
                 className="flex items-center justify-center font-medium text-blue-600 hover:text-blue-500 "
               >
                 Forget password
@@ -174,7 +177,8 @@ export default function LoginBlock() {
         <p className="mt-2 text-center text-md text-gray-600 flex items-center justify-center gap-[100px]">
           Don't have an account yet?
           <a
-            href="register"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/register")}
             className="font-medium text-blue-600 hover:text-blue-500"
           >
             Create account
