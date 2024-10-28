@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Plane, Luggage, Sun, ArrowLeft } from "lucide-react";
-
-export default function ResetPasswordBlock2({ setStep }) {
+import Button from "@mui/material/Button";
+export default function ResetPasswordBlock2({ setStep, email }) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const handleChange = (element, index) => {
@@ -14,7 +13,6 @@ export default function ResetPasswordBlock2({ setStep }) {
       element.nextSibling.focus();
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const enteredOtp = otp.join("");
@@ -22,20 +20,21 @@ export default function ResetPasswordBlock2({ setStep }) {
     // Here you would typically send this OTP to your server for verification
     setStep(3);
   };
-
+  const resendCode = () => {
+    alert("Code has been resent to " + email);
+  };
   return (
-    <div className="w-[350px] bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-      <div className="p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-center">Confirm Your OTP</h2>
-        <p className="text-center text-gray-600">
-          Enter the code we sent to continue your journey!
-        </p>
-        <div className="flex justify-center space-x-4 text-blue-600">
-          <Plane size={24} />
-          <Luggage size={24} />
-          <Sun size={24} />
+    <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-start mb-[50px]">
+          <h2 className="mt-6 text-4xl font-extrabold text-gray-900">
+            Enter Verification Code
+          </h2>
+          <p className="mt-2 text-xl text-gray-600">
+            We have just sent a verification code to {email}
+          </p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-10">
           <div className="flex justify-between space-x-2">
             {otp.map((data, index) => {
               return (
@@ -45,33 +44,48 @@ export default function ResetPasswordBlock2({ setStep }) {
                   maxLength="1"
                   value={data}
                   onChange={(e) => handleChange(e.target, index)}
-                  className="w-10 h-12 text-center text-xl font-bold border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-[3.5rem] h-[4rem] text-center text-xl font-bold border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               );
             })}
           </div>
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Verify OTP
-          </button>
+          <div className="space-y-6">
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "#4169E1",
+                "&:hover": { backgroundColor: "#2D84F7 " },
+                height: "55px",
+                borderRadius: "45px",
+                fontWeight: "bold",
+                fontFamily: "Urbanist",
+                textTransform: "none",
+                fontSize: "18px",
+              }}
+              fullWidth
+            >
+              Verify
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                height: "55px",
+                borderRadius: "45px",
+                fontWeight: "bold",
+                fontFamily: "Urbanist",
+                textTransform: "none",
+                fontSize: "18px",
+              }}
+              fullWidth
+              onClick={resendCode}
+            >
+              Resend Code
+            </Button>
+          </div>
         </form>
-        <div className="text-center">
-          <a
-            href="login"
-            className="text-sm text-blue-600 hover:underline flex items-center justify-center"
-          >
-            <ArrowLeft size={16} className="mr-1" />
-            Back to Login
-          </a>
-        </div>
-        <div className="text-center text-sm text-gray-600">
-          <p>Didn't receive the code?</p>
-          <a href="#" className="text-blue-600 hover:underline">
-            Resend OTP
-          </a>
-        </div>
       </div>
     </div>
   );
