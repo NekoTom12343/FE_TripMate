@@ -4,9 +4,14 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 export default function ResetPasswordBlock1({ setStep, email, setEmail }) {
+  const [emailError, setEmailError] = useState(false);
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (emailError) {
+      return;
+    }
     console.log("Password reset requested for:", email);
     setStep(2);
     // Here you would typically send a request to your server to initiate the password reset process
@@ -26,9 +31,17 @@ export default function ResetPasswordBlock1({ setStep, email, setEmail }) {
         <form className="mt-8 " onSubmit={handleSubmit}>
           <div className="space-y-6 mb-[60px]">
             <TextField
+              error={emailError}
+              helperText={
+                emailError ? "Please enter a valid email address" : ""
+              }
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmailError(!emailRegex.test(e.target.value));
+                setEmail(e.target.value);
+                console.log(emailError);
+              }}
               label="Email Address"
               variant="standard"
               fullWidth

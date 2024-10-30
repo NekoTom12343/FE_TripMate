@@ -9,11 +9,10 @@ export default function ResetPassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+    if (confirmPasswordError) {
       return;
     }
     console.log("New password set:", password);
@@ -70,13 +69,18 @@ export default function ResetPassword() {
               }}
             />
             <TextField
+              error={confirmPasswordError}
+              helperText={confirmPasswordError ? "Passwords do not match" : ""}
               label="Confirm Password"
               variant="standard"
               type={showConfirmPassword ? "text" : "password"}
               fullWidth
               margin="normal"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                setConfirmPasswordError(password !== e.target.value);
+              }}
               slotProps={{
                 input: {
                   endAdornment: (
