@@ -1,3 +1,9 @@
-export default function mainpage() {
-  return <div>HELLO WORLD</div>;
+import HeaderBar from "../components/HeaderBar";
+
+export default function Mainpage() {
+  return (
+    <div>
+      <HeaderBar />
+    </div>
+  );
 }
