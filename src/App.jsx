@@ -4,7 +4,7 @@ import TravelRegisterPage from "./pages/TravelRegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthGuard from "./middleware/AuthGuard";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import mainpage from "./pages/mainpage";
+import Mainpage from "./pages/mainpage";
 function App() {
   return (
     <BrowserRouter>
@@ -14,10 +14,11 @@ function App() {
           <Route path="login" element={<TravelLoginPage />} />
           <Route path="register" element={<TravelRegisterPage />} />
           <Route path="reset-password" element={<ResetPasswordPage />} />
-          <Route
+          {/* <Route
             path="home"
             element={<AuthGuard role="user" Component={mainpage} />}
-          />
+          /> */}
+          <Route path="home" element={<Mainpage />} />
         </Route>
       </Routes>
     </BrowserRouter>
