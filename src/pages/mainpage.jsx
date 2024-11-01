@@ -1,6 +1,7 @@
 import FilterBar from "../components/FilterBar";
 import HeaderBar from "../components/HeaderBar";
 import HomePageBanner from "../components/HomePageBanner";
+import TopLocations from "../components/TopLocations";
 
 export default function Mainpage() {
   return (
@@ -8,6 +9,7 @@ export default function Mainpage() {
       <HeaderBar />
       <HomePageBanner />
       <FilterBar />
+      <TopLocations />
     </div>
   );
 }
