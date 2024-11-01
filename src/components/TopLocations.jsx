@@ -3,7 +3,6 @@ import { Typography, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Pagination from "@mui/material/Pagination";
 
 const locations = [
   { name: "Ha Noi Capital", image: "https://picsum.photos/280/343" },
@@ -81,12 +80,20 @@ export default function TopLocations() {
             alignItems: "center",
             marginTop: "20px",
           }}
+          className="space-x-6"
         >
           <IconButton
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            disabled={page === 1}
+            size="large"
+            sx={{
+              backgroundColor: page === 1 ? "#CDCCCC" : "rgb(41, 121, 255)", // Gray when disabled, primary color when enabled
+              color: "white",
+              "&:hover": {
+                backgroundColor: page === 1 ? "gray" : "primary.main", // Darker shade on hover when enabled
+              },
+            }}
           >
-            <ArrowBackIcon />
+            <ArrowBackIcon sx={{ color: "white" }} />
           </IconButton>
           <IconButton
             onClick={() =>
@@ -94,9 +101,22 @@ export default function TopLocations() {
                 Math.min(prev + 1, Math.ceil(locations.length / itemsPerPage))
               )
             }
-            disabled={page === Math.ceil(locations.length / itemsPerPage)}
+            // disabled={page === Math.ceil(locations.length / itemsPerPage)}
+            size="large"
+            sx={{
+              backgroundColor:
+                page === Math.ceil(locations.length / itemsPerPage)
+                  ? "#CDCCCC"
+                  : "rgb(41, 121, 255)",
+              "&:hover": {
+                backgroundColor:
+                  page === Math.ceil(locations.length / itemsPerPage)
+                    ? "gray"
+                    : "primary.main",
+              },
+            }}
           >
-            <ArrowForwardIcon />
+            <ArrowForwardIcon sx={{ color: "white" }} />
           </IconButton>
         </div>
       </div>
