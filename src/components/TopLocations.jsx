@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Button, IconButton } from "@mui/material";
+import { Typography, IconButton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -22,9 +22,6 @@ export default function TopLocations() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = locations.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
   return (
     <div
       style={{
@@ -41,17 +38,17 @@ export default function TopLocations() {
         >
           Top locations to Explore
         </Typography>
-        <Grid container spacing={5} justifyContent="space-evenly">
+        <Grid container spacing={0} justifyContent="space-between">
           {currentItems.map((location, index) => (
             <Grid size={{ md: 2, xs: 3 }} key={index}>
               <div
                 style={{
+                  border: "1px solid rgba(45, 132, 247, 1)",
                   position: "relative",
                   borderRadius: "24px",
                   overflow: "hidden",
                   minHeight: "280px",
                   //   width: "280px",
-                  paddingX: "20px",
                   backgroundImage: `linear-gradient(180deg, rgba(45, 132, 247, 0) 0%, #2D84F7 100%), url(${location.image})`,
                 }}
               >
