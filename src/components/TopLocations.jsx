@@ -40,28 +40,31 @@ export default function TopLocations() {
         </Typography>
         <Grid container spacing={0} justifyContent="space-between">
           {currentItems.map((location, index) => (
-            <Grid size={{ md: 2, xs: 3 }} key={index}>
+            <Grid item size={{ md: 2, xs: 3 }} key={index}>
               <div
                 style={{
                   border: "1px solid rgba(45, 132, 247, 1)",
                   position: "relative",
                   borderRadius: "24px",
                   overflow: "hidden",
-                  minHeight: "280px",
-                  //   width: "280px",
+                  minHeight: "400px",
                   backgroundImage: `linear-gradient(180deg, rgba(45, 132, 247, 0) 0%, #2D84F7 100%), url(${location.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 <Typography
                   sx={{
-                    bottom: "20px",
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: "240px",
+                    position: "absolute",
+                    bottom: "20px", // Adjust this value to move it up or down from the bottom
+                    left: "50%",
+                    transform: "translateX(-50%)",
                     color: "white",
                     fontFamily: "Urbanist",
                     fontWeight: "700",
                     wordWrap: "break-word",
+                    textAlign: "center",
+                    width: "100%",
                   }}
                 >
                   {location.name}
