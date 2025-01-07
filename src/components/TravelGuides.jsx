@@ -1,7 +1,9 @@
 import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useState } from "react";
-import { Card, CardMedia, CardContent, Pagination } from "@mui/material";
+import { Card, CardMedia, CardContent, Pagination, Stack } from "@mui/material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { useNavigate } from "react-router-dom";
 
 const guides = [
   {
@@ -40,9 +42,10 @@ const guides = [
     link: "#",
   },
 ];
+
 export default function TravelGuides({ travelGuideRef }) {
   const [page, setPage] = useState(1);
-
+  const navigate = useNavigate();
   // Calculate the items to display based on the current page
   const itemsPerPage = 4;
   const indexOfLastItem = page * itemsPerPage;
@@ -98,6 +101,7 @@ export default function TravelGuides({ travelGuideRef }) {
                   height="200"
                   image={guide.image}
                   alt={guide.name}
+                  borderRadius="16px 16px 0 0"
                 />
                 <CardContent>
                   <Typography
@@ -113,8 +117,18 @@ export default function TravelGuides({ travelGuideRef }) {
                   <Button
                     size="small"
                     color="primary"
-                    href={guide.link}
-                    style={{ marginTop: "10px" }}
+                    onClick={() => {
+                      navigate(guide.link);
+                      console.log("Navigating to: ", guide.link);
+                    }}
+                    style={{
+                      marginTop: "10px",
+                      textTransform: "none",
+                      fontWeight: "bold",
+                      fontFamily: "Urbanist",
+                      fontSize: "1rem",
+                    }}
+                    endIcon={<ArrowOutwardIcon />}
                   >
                     Read Full Post
                   </Button>
@@ -123,6 +137,15 @@ export default function TravelGuides({ travelGuideRef }) {
             </Grid>
           ))}
         </Grid>
+        <Stack
+          spacing={2}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Pagination count={10} shape="rounded" color="primary" size="large" />
+        </Stack>
       </div>
     </div>
   );
