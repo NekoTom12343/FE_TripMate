@@ -40,7 +40,7 @@ const guides = [
     link: "#",
   },
 ];
-export default function TravelGuides() {
+export default function TravelGuides({ travelGuideRef }) {
   const [page, setPage] = useState(1);
 
   // Calculate the items to display based on the current page
@@ -56,6 +56,7 @@ export default function TravelGuides() {
         textAlign: "left",
         fontFamily: "Urbanist",
       }}
+      ref={travelGuideRef}
     >
       <div className="mt-10 mx-10 space-y-16">
         <div className="flex justify-between">

@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid2";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 
-function FilterBar() {
+function FilterBar({ filterRef }) {
   const categories = [
     {
       label: "Account Type",
@@ -62,6 +62,7 @@ function FilterBar() {
         textAlign: "left",
         fontFamily: "Urbanist",
       }}
+      ref={filterRef}
     >
       <div className="mt-10 mx-10 space-y-16">
         <Typography

@@ -13,7 +13,7 @@ const locations = [
   { name: "Da Lat", image: "https://picsum.photos/280/343" },
 ];
 
-export default function TopLocations() {
+export default function TopLocations({ topLocationRef }) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -30,6 +30,7 @@ export default function TopLocations() {
         textAlign: "left",
         fontFamily: "Urbanist",
       }}
+      ref={topLocationRef}
     >
       <div className="mt-10 mx-10 space-y-16">
         <Typography
