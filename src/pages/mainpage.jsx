@@ -4,6 +4,7 @@ import HomePageBanner from "../components/HomePageBanner";
 import TopLocations from "../components/TopLocations";
 import TravelGuides from "../components/TravelGuides";
 import { useRef } from "react";
+import TripMateList from "../components/TripMatesList";
 
 export default function Mainpage() {
   const filterRef = useRef(null);
@@ -18,6 +19,7 @@ export default function Mainpage() {
       <FilterBar filterRef={filterRef} />
       <TopLocations topLocationRef={topLocationRef} />
       <TravelGuides travelGuideRef={travelGuideRef} />
+      <TripMateList />
     </div>
   );
 }
