@@ -3,6 +3,7 @@ import { Typography, IconButton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box } from "@mui/material";
 
 const locations = [
   { name: "Ha Noi Capital", image: "https://picsum.photos/280/343" },
@@ -42,13 +43,16 @@ export default function TopLocations({ topLocationRef }) {
         <Grid container spacing={0} justifyContent="space-between">
           {currentItems.map((location, index) => (
             <Grid item size={{ md: 2, xs: 3 }} key={index}>
-              <div
-                style={{
+              <Box
+                sx={{
                   border: "1px solid rgba(45, 132, 247, 1)",
                   position: "relative",
                   borderRadius: "24px",
                   overflow: "hidden",
-                  minHeight: "400px",
+                  minHeight: {
+                    xl: "400px",
+                    md: "280px",
+                  },
                   backgroundImage: `linear-gradient(180deg, rgba(45, 132, 247, 0) 0%, #2D84F7 100%), url(${location.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -70,7 +74,7 @@ export default function TopLocations({ topLocationRef }) {
                 >
                   {location.name}
                 </Typography>
-              </div>
+              </Box>
             </Grid>
           ))}
         </Grid>
