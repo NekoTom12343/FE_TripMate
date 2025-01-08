@@ -24,7 +24,7 @@ export default function TripMateList() {
         fontFamily: "Urbanist",
       }}
     >
-      <div className="mt-10 mx-10 space-y-16">
+      <div className="mt-10 mb-10 mx-10 space-y-16">
         <Typography
           variant="h4"
           style={{ color: "#2979FF", fontWeight: "bold", marginBottom: "20px" }}
