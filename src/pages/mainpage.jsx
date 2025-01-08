@@ -5,7 +5,7 @@ import TopLocations from "../components/TopLocations";
 import TravelGuides from "../components/TravelGuides";
 import { useRef } from "react";
 import TripMateList from "../components/TripMatesList";
-
+import Footer from "../components/Footer";
 export default function Mainpage() {
   const filterRef = useRef(null);
   const topLocationRef = useRef(null);
@@ -20,6 +20,7 @@ export default function Mainpage() {
       <TopLocations topLocationRef={topLocationRef} />
       <TravelGuides travelGuideRef={travelGuideRef} />
       <TripMateList />
+      <Footer />
     </div>
   );
 }
