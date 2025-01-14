@@ -36,7 +36,7 @@ export default function TripMateList() {
             <Grid
               item
               key={index}
-              size={{ md: 2, xs: 4 }}
+              size={{ md: 3, xs: 4, lg: 2 }}
               className="flex justify-center"
             >
               {index === mates.length - 1 ? (
