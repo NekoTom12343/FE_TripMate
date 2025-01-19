@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthGuard from "./middleware/AuthGuard";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Mainpage from "./pages/mainpage";
+import LocationPage from "./pages/LocationPage";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
             element={<AuthGuard role="user" Component={mainpage} />}
           /> */}
           <Route path="home" element={<Mainpage />} />
+          <Route path="location/:locationId" element={<LocationPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
