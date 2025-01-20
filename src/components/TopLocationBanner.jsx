@@ -50,9 +50,9 @@ const locationData = [
   },
   {
     id: "dalat",
-    name: "Đà Lạt",
+    name: "DA LAT",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/5/50/Xuan_Huong_Lake.jpg",
+      "https://t2.ex-cdn.com/crystalbay.com/resize/1860x570/files/news/2024/05/13/cam-nang-du-lich-da-lat-tu-a-z-manh-dat-gay-thuong-nho-cua-lam-dong-150548.jpg",
   },
   {
     id: "phuquoc",
