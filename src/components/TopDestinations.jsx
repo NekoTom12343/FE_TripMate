@@ -346,7 +346,6 @@ export default function TopDestinations({ locationId }) {
             borderRadius: "40px",
             textTransform: "none",
             padding: "0px 30px",
-            fontSize: "1rem",
             left: "35%",
             fontFamily: "Urbanist",
             fontWeight: "600",
