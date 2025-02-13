@@ -7,39 +7,50 @@ import { useNavigate } from "react-router-dom";
 
 const guides = [
   {
-    title: "The best places to visit in Vietnam",
-    image: "https://picsum.photos/767/506",
-    description:
-      "Vietnam is a Southeast Asian country known for its beaches, rivers, Buddhist pagodas and bustling cities. Hanoi, the capital, pays homage to the nation’s iconic",
-    link: "#",
+    id: 1,
+    title: "Sapa: The Misty Highlands",
+    description: "Aenean eleifend ante maecenas pulvinar montes lorem et pede.",
+    headerImage:
+      "https://saigontourism.com.vn/wp-content/uploads/2023/10/Sapa-Vietnam-04.jpg",
+    date: "June 21, 2022",
+    readTime: "2 minute read",
   },
   {
-    title: "The best places to visit in Vietnam",
-    image: "https://picsum.photos/767/506",
-    description:
-      "Vietnam is a Southeast Asian country known for its beaches, rivers, Buddhist pagodas and bustling cities. Hanoi, the capital, pays homage to the nation’s iconic",
-    link: "#",
+    id: 2,
+    title: "Ha Long Bay: A Natural Wonder of the World",
+    description: "Aenean eleifend ante maecenas pulvinar montes lorem et pede.",
+    headerImage:
+      "https://lp-cms-production.imgix.net/2023-10/GettyRF92865967.jpg",
+    date: "June 21, 2022",
+    readTime: "2 minute read",
   },
   {
-    title: "The best places to visit in Vietnam",
-    image: "https://picsum.photos/767/506",
-    description:
-      "Vietnam is a Southeast Asian country known for its beaches, rivers, Buddhist pagodas and bustling cities. Hanoi, the capital, pays homage to the nation’s iconic",
-    link: "#",
+    id: 3,
+    title: "Hanoi: The Timeless Charm of Vietnam",
+    description: "Aenean eleifend ante maecenas pulvinar montes lorem et pede.",
+    headerImage:
+      "https://tiimtravel.com/storage/uploads/2024/08/hanoi-tiimtravel-KRXN3BN7.jpg",
+    date: "June 21, 2022",
+    readTime: "2 minute read",
   },
   {
-    title: "The best places to visit in Vietnam",
-    image: "https://picsum.photos/767/506",
-    description:
-      "Vietnam is a Southeast Asian country known for its beaches, rivers, Buddhist pagodas and bustling cities. Hanoi, the capital, pays homage to the nation’s iconic",
-    link: "#",
+    id: 4,
+    title: "Da Nang: The Coastal Gem of Central Vietnam",
+    description: "Aenean eleifend ante maecenas pulvinar montes lorem et pede.",
+    headerImage:
+      "https://bangkokattractions.com/wp-content/uploads/2023/03/da-nang.jpg",
+    date: "June 21, 2022",
+    readTime: "2 minute read",
   },
   {
-    title: "The best places to visit in Vietnam",
-    image: "https://picsum.photos/767/506",
+    id: 5,
+    title: "A Wonderful Journey to Ho Chi Minh City",
     description:
-      "Vietnam is a Southeast Asian country known for its beaches, rivers, Buddhist pagodas and bustling cities. Hanoi, the capital, pays homage to the nation’s iconic",
-    link: "#",
+      "Relationship tips couples therapists are giving all the time.",
+    headerImage:
+      "https://live.staticflickr.com/65535/53329298767_3c1a14858b_c.jpg",
+    date: "June 21, 2022",
+    readTime: "2 minute read",
   },
 ];
 
@@ -47,7 +58,7 @@ export default function TravelGuides({ travelGuideRef }) {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   // Calculate the items to display based on the current page
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
   const indexOfLastItem = page * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = guides.slice(indexOfFirstItem, indexOfLastItem);
@@ -86,7 +97,7 @@ export default function TravelGuides({ travelGuideRef }) {
             View All Stories
           </Button>
         </div>
-        <Grid container spacing={10} justifyContent="space-between">
+        <Grid container spacing={10}>
           {currentItems.map((guide, index) => (
             <Grid item size={{ md: 4, xs: 4 }} key={index}>
               <Card
@@ -98,8 +109,8 @@ export default function TravelGuides({ travelGuideRef }) {
               >
                 <CardMedia
                   component="img"
-                  height="200"
-                  image={guide.image}
+                  sx={{ height: "350px", width: "100%", objectFit: "cover" }}
+                  image={guide.headerImage}
                   alt={guide.name}
                   borderRadius="16px 16px 0 0"
                 />
@@ -118,8 +129,7 @@ export default function TravelGuides({ travelGuideRef }) {
                     size="small"
                     color="primary"
                     onClick={() => {
-                      navigate(guide.link);
-                      console.log("Navigating to: ", guide.link);
+                      navigate(`/travelguide/${guide.id}`);
                     }}
                     style={{
                       marginTop: "10px",
@@ -144,7 +154,13 @@ export default function TravelGuides({ travelGuideRef }) {
             alignItems: "center",
           }}
         >
-          <Pagination count={10} shape="rounded" color="primary" size="large" />
+          <Pagination
+            count={10}
+            shape="rounded"
+            color="primary"
+            size="large"
+            onChange={(event, value) => setPage(value)}
+          />
         </Stack>
       </div>
     </div>
