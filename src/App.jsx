@@ -6,7 +6,7 @@ import AuthGuard from "./middleware/AuthGuard";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Mainpage from "./pages/mainpage";
 import LocationPage from "./pages/LocationPage";
-import TravelGuideBlog from "./components/TravelGuideBlog";
+import TravelGuidePage from "./pages/TravelGuidePage";
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +22,7 @@ function App() {
           /> */}
           <Route path="home" element={<Mainpage />} />
           <Route path="location/:locationId" element={<LocationPage />} />
-          <Route path="test" element={<TravelGuideBlog />} />
+          <Route path="travelguide/:guideId" element={<TravelGuidePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
