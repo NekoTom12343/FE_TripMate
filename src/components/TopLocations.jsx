@@ -4,19 +4,50 @@ import Grid from "@mui/material/Grid2";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const locations = [
-  { name: "Ha Noi Capital", image: "https://picsum.photos/280/343" },
-  { name: "Hue Ancient Capital", image: "https://picsum.photos/280/343" },
-  { name: "Da Nang City", image: "https://picsum.photos/280/343" },
-  { name: "Hoi An Ancient Town", image: "https://picsum.photos/280/343" },
-  { name: "Ho Chi Minh City", image: "https://picsum.photos/280/343" },
-  { name: "Da Lat", image: "https://picsum.photos/280/343" },
+  {
+    id: "hanoi",
+    name: "Ha Noi Capital",
+    image:
+      "https://image.vietnam.travel/sites/default/files/styles/top_banner/public/2017-06/vietnam-travel-5.jpg?itok=XVnHP3ty",
+  },
+  {
+    id: "hue",
+    name: "Hue Ancient Capital",
+    image: "https://izitour.com/media/blog/hue-imperial-city-vietnam.webp",
+  },
+  {
+    id: "danang",
+    name: "Da Nang City",
+    image:
+      "https://www.getvisavietnam.com/wp-content/uploads/2024/05/Han-River-and-Han-River-Bridge.jpg",
+  },
+  {
+    id: "hoian",
+    name: "Hoi An Ancient Town",
+    image:
+      "https://blisshoian.com/wp-content/uploads/2024/08/53703063-5989-4005-b5de-7ef567181d86d2fd0929-16922414873551394557686.webp",
+  },
+  {
+    id: "hochiminh",
+    name: "Ho Chi Minh City",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f4/Ho_Chi_Minh_City_panorama_2019_%28cropped2%29.jpg",
+  },
+  {
+    id: "dalat",
+    name: "Da Lat",
+    image:
+      "https://bizweb.dktcdn.net/thumb/grande/100/342/038/products/gioi-thieu-ve-da-lat-1-1-jpg-v-1706500854530-bc3b54af-032a-4bc3-bc4f-4b994e311ef4-jpg-v-1706507674117-87b4753c-35a9-4aa8-bb13-a6dd00d156c2.jpg?v=1706586286750",
+  },
 ];
 
 export default function TopLocations({ topLocationRef }) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
+  const navigate = useNavigate();
 
   // Determine which items to display based on the page number
   const indexOfLastItem = page * itemsPerPage;
@@ -42,7 +73,13 @@ export default function TopLocations({ topLocationRef }) {
         </Typography>
         <Grid container spacing={0} justifyContent="space-between">
           {currentItems.map((location, index) => (
-            <Grid item size={{ md: 2, xs: 3 }} key={index}>
+            <Grid
+              item
+              size={{ md: 2, xs: 3 }}
+              key={index}
+              onClick={() => navigate(`/location/${location.id}`)}
+              sx={{ cursor: "pointer" }}
+            >
               <Box
                 sx={{
                   border: "1px solid rgba(45, 132, 247, 1)",
