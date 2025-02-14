@@ -6,7 +6,7 @@ import TravelGuides from "../components/TravelGuides";
 import { useRef } from "react";
 import TripMateList from "../components/TripMatesList";
 import Footer from "../components/Footer";
-export default function Mainpage() {
+export default function HomePage() {
   const filterRef = useRef(null);
   const topLocationRef = useRef(null);
   const travelGuideRef = useRef(null);
