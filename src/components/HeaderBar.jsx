@@ -9,8 +9,10 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import logo from "../assets/logo.svg";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderBar() {
+  const navigate = useNavigate();
   return (
     <AppBar
       position="static"
@@ -18,7 +20,13 @@ export default function HeaderBar() {
     >
       <Toolbar>
         {/* Left side */}
-        <img src={logo} alt="Tripmate" className="w-24 h-24" />
+        <img
+          src={logo}
+          alt="Tripmate"
+          className="w-24 h-24"
+          onClick={() => navigate("/home")}
+          style={{ cursor: "pointer" }}
+        />
         {/* Center  */}
         <Box sx={{ flexGrow: 1 }} />
         {/* Right side */}
@@ -35,7 +43,7 @@ export default function HeaderBar() {
           <IconButton color="inherit">
             <MessageCircleMore size={30} style={{ transform: "scaleX(-1)" }} />
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={() => navigate("/profile")}>
             <AccountCircleOutlinedIcon sx={{ fontSize: 30 }} />
           </IconButton>
         </Box>
