@@ -4,9 +4,10 @@ import TravelRegisterPage from "./pages/TravelRegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthGuard from "./middleware/AuthGuard";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Mainpage from "./pages/mainpage";
+import HomePage from "./pages/HomePage";
 import LocationPage from "./pages/LocationPage";
 import TravelGuidePage from "./pages/TravelGuidePage";
+import UserProfilePage from "./pages/UserProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -20,9 +21,10 @@ function App() {
             path="home"
             element={<AuthGuard role="user" Component={mainpage} />}
           /> */}
-          <Route path="home" element={<Mainpage />} />
+          <Route path="home" element={<HomePage />} />
           <Route path="location/:locationId" element={<LocationPage />} />
           <Route path="travelguide/:guideId" element={<TravelGuidePage />} />
+          <Route path="profile" element={<UserProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
