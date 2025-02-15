@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import LocationPage from "./pages/LocationPage";
 import TravelGuidePage from "./pages/TravelGuidePage";
 import UserProfilePage from "./pages/UserProfilePage";
+import NewFeedPage from "./pages/NewFeedPage";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
           <Route path="location/:locationId" element={<LocationPage />} />
           <Route path="travelguide/:guideId" element={<TravelGuidePage />} />
           <Route path="profile" element={<UserProfilePage />} />
+          <Route path="newfeed" element={<NewFeedPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
