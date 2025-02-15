@@ -32,7 +32,10 @@ export default function HeaderBar() {
         {/* Right side */}
         <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <IconButton color="inherit">
-            <ExploreOutlinedIcon sx={{ fontSize: 30 }} />
+            <ExploreOutlinedIcon
+              sx={{ fontSize: 30 }}
+              onClick={() => navigate("/newfeed")}
+            />
           </IconButton>
           <IconButton color="inherit">
             <NotificationsNoneOutlinedIcon sx={{ fontSize: 30 }} />
