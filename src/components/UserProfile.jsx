@@ -63,7 +63,16 @@ export default function UserProfile() {
       reader.readAsDataURL(file);
     }
   };
-
+  const handleAvatarImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUserData({ ...userData, avatar: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const getFieldLabel = (field) => {
     switch (field) {
       case "sex":
@@ -123,6 +132,34 @@ export default function UserProfile() {
               left: "50%",
             }}
           />
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="upload-avatar-image"
+            type="file"
+            onChange={handleAvatarImageChange}
+          />
+          <label htmlFor="upload-avatar-image"></label>
+          <IconButton
+            color="primary"
+            size="large"
+            sx={{
+              position: "absolute",
+              bottom: -90,
+              transform: "translateX(-50%)",
+              left: "53%",
+              backgroundColor: "#2772D6",
+              color: "#FFFFFF",
+              "&:hover": {
+                backgroundColor: "#1a4a8a",
+              },
+            }}
+            onClick={() =>
+              document.getElementById("upload-avatar-image").click()
+            }
+          >
+            <Edit />
+          </IconButton>
         </Box>
       </Box>
       <Box className="relative text-center mt-24">
