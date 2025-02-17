@@ -30,6 +30,7 @@ export default function LoginBlock() {
     }
   };
   const handleSubmit = async (e) => {
+    navigate("/home");
     e.preventDefault();
     console.log("Login attempt:", { username, password });
     const result = await Login(username, password);
